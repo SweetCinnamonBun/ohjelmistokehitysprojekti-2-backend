@@ -48,6 +48,13 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
+
+builder.Services.AddCors(x => x.AddPolicy("corspolicy", build =>
+{
+    build.WithOrigins("").AllowAnyMethod().AllowAnyHeader();
+}));
+
+
 builder.Services.AddDbContext<OKP2DbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("OKP2ConnectionString")));
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
